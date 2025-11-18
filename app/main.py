@@ -1,11 +1,11 @@
 import tkinter as tk
-from ui import flight_overview_page
-
 import sv_ttk
+
+import view
 
 root = tk.Tk()
 root.title("Flight Schedule Importer")
-flight_overview_page(root)
+view.login_page(root)
 
 sv_ttk.set_theme("light")
 

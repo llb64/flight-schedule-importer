@@ -1,6 +1,7 @@
 from tkinter import ttk
-from models import load_flight_data
-from controllers import flight_upload_btn_handler
+
+import model
+import controller
 
 # === Utils ===
 
@@ -14,7 +15,7 @@ def destroy_all(root):
 
 def login_page(parent):
     destroy_all(parent)
-    frame = create_frame(parent)
+    frame = create_frame(parent, 20)
     insert_title(frame, "Login Page")
     insert_login_inputs(frame)
     frame.pack(fill="both", expand=1)
@@ -39,12 +40,12 @@ def insert_title(parent, text):
 
 def insert_buttons(parent):
     frame = create_frame(parent)
-    ttk.Button(frame, text="Upload Flights", command=flight_upload_btn_handler).pack(side="left", pady=10)
+    ttk.Button(frame, text="Upload Flights", command=controller.flight_upload_btn_handler).pack(side="left", pady=10)
     ttk.Button(frame, text="Logout", command=lambda:login_page(parent)).pack(side="right", pady=10)
     frame.pack(fill="x")
 
 def insert_table(parent):
-    flight_data = load_flight_data()
+    flight_data = model.load_flight_data()
 
     columns = ["Flight Carrier", "Flight Number", "Station", "Departure", "Files Expected", "Expected Hours in Advance"]
     tree = ttk.Treeview(parent, columns=columns, show="headings")
@@ -63,5 +64,12 @@ def insert_table(parent):
 # === Login Widgets ===
 
 def insert_login_inputs(parent):
-    ttk.Entry(parent)
-    ttk.Entry(parent)
+    ttk.Label(parent, text="Username:").pack(pady=10)
+    username_entry = ttk.Entry(parent)
+    username_entry.pack()
+
+    ttk.Label(parent, text="Password:").pack(pady=10)
+    password_entry = ttk.Entry(parent, show="*")
+    password_entry.pack()
+
+    ttk.Button(parent, text="Login", command=lambda:controller.login_handler(parent, username_entry.get(), password_entry.get())).pack(pady=10)
