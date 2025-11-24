@@ -22,27 +22,27 @@ def login_page(parent):
     frame = create_frame(root, 20)
     insert_title(frame, "Login Page")
     insert_login_inputs(frame)
-    frame.pack(fill="both", expand=1)
+    frame.pack(fill="both", expand=True)
 
 def flight_overview_page(parent):
     root = destroy_all_widgets(parent)
     frame = create_frame(root, 20)
-    insert_title(frame, "Flight Schedule Importer")
+    insert_title(frame, "Flight Overview")
     insert_flight_overview_buttons(frame)
     insert_table(frame)
-    frame.pack(fill="both", expand=1)
+    frame.pack(fill="both", expand=True)
 
 def create_flight_page(parent):
     root = destroy_all_widgets(parent)
     frame = create_frame(root, 20)
     insert_title(frame, "Create Flight")
     insert_create_flight_buttons(frame)
-    frame.pack(fill="both", expand=1)
+    frame.pack(fill="both", expand=True)
 
 # === Widgets ===
 
 def create_frame(parent, padding = 0):
-    return ttk.Frame(parent, padding=padding)
+    return ttk.Frame(parent, padding=padding, width=500, height=500)
 
 def insert_title(parent, text):
     ttk.Label(parent, text=text, font=('Helvetica', 20, 'bold')).pack(fill="x")
@@ -74,7 +74,7 @@ def insert_flight_overview_buttons(parent):
 def insert_table(parent):
     flight_data = model.load_flight_data()
 
-    columns = ["Flight Carrier", "Flight Number", "Station", "Departure", "Files Expected", "Expected Hours in Advance", ""]
+    columns = ["Flight Carrier", "Flight Number", "Station", "Departure", "Files Expected", "Expected Hours in Advance"]
     tree = ttk.Treeview(parent, columns=columns, show="headings")
     tree.pack(side="left", fill="both", expand=1)
 
@@ -88,7 +88,6 @@ def insert_table(parent):
         tree.column(column, anchor="center")
     id = 1
     for flight in flight_data:
-        flight.append("Delete")
         tree.insert("", "end", values=flight, iid=id)
         id += 1
 

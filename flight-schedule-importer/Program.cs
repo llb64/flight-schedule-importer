@@ -5,7 +5,7 @@ using FlightScheduleImporter.Enums;
 using FlightScheduleImporter.Extensions;
 using System.Globalization;
 
-const string FilePath = "flight-schedule-importer/import_file.xls";
+const string FilePath = "import_file.xls";
 const int StartRowIndex = 5;
 const string Carrier = "DL";
 var hoursInAdvanceDictionary = new Dictionary<string, int>

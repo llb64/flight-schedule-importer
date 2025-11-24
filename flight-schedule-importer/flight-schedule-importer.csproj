@@ -12,4 +12,11 @@
     <PackageReference Include="NPOI" Version="2.7.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="import_file.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
