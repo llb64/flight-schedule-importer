@@ -6,11 +6,17 @@ USERS_PATH = "app/data/users.csv"
 def load_users():
     with open(USERS_PATH, newline="") as users:
         return list(csv.DictReader(users))
+    
+def read_csv_file(csv_file_path):
+    with open(csv_file_path, newline="") as lines:
+        next(lines)
+        return list(csv.reader(lines))
 
 def load_flight_data():
-    with open(FLIGHTS_PATH, newline="") as flights:
-        next(flights)
-        return list(csv.reader(flights))
+    return read_csv_file(FLIGHTS_PATH)
+    
+def load_flight_schedule_file(flight_schedule_file_path):
+    return read_csv_file(flight_schedule_file_path)
 
 def add_flight(flight_csv):
     with open(FLIGHTS_PATH, 'a', newline="") as flights:

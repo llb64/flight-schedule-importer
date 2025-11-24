@@ -39,13 +39,6 @@ def create_flight_page(parent):
     insert_create_flight_buttons(frame)
     frame.pack(fill="both", expand=1)
 
-def edit_flight_page(parent):
-    root = destroy_all_widgets(parent)
-    frame = create_frame(root, 20)
-    insert_title(frame, "Edit Flight")
-    insert_edit_flight_buttons(frame)
-    frame.pack(fill="both", expand=1)
-
 # === Widgets ===
 
 def create_frame(parent, padding = 0):
@@ -73,7 +66,7 @@ def insert_date_time_picker(parent, label):
 
 def insert_flight_overview_buttons(parent):
     frame = create_frame(parent)
-    ttk.Button(frame, text="Upload Flights", command=controller.flight_upload_btn_handler).pack(side="left", pady=10)
+    ttk.Button(frame, text="Upload Flights", command=lambda:controller.flight_upload_btn_handler(parent)).pack(side="left", pady=10)
     ttk.Button(frame, text="Create Flight", command=lambda:create_flight_page(parent)).pack(side="left", pady=10, padx=10)
     ttk.Button(frame, text="Logout", command=lambda:login_page(parent)).pack(side="right", pady=10)
     frame.pack(fill="x")
